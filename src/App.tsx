@@ -1,4 +1,4 @@
-import  { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Trophy, History, Trash2 } from 'lucide-react';
 
 interface WinRecord {
@@ -22,14 +22,14 @@ function App() {
     if (savedHistory) {
       setWinHistory(JSON.parse(savedHistory));
     }
-    
+
     // Get title from URL query parameter
     const params = new URLSearchParams(window.location.search);
     const displayTitle = params.get('displayTitle');
     if (displayTitle) {
       setTitle(displayTitle);
     }
-    
+
     // Get max number from URL query parameter
     const maxParam = params.get('maxNumber');
     if (maxParam && !isNaN(parseInt(maxParam))) {
@@ -115,22 +115,25 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 flex items-center justify-center p-4">
-      <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 w-full max-w-4xl shadow-2xl flex flex-col lg:flex-row gap-6 lg:gap-8">
+      <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 w-full max-w-4xl shadow-2xl flex flex-col lg:flex-row gap-6 lg:gap-8" style={{
+        WebkitBackdropFilter: "inherit"
+      }}>
         {/* Main Raffle Section */}
         <div className="flex-1">
           <div className="text-center">
             <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 lg:mb-8">
               {title}
             </h1>
-            
+
             <div className="relative mb-6 lg:mb-8">
-              <div className="bg-white/5 rounded-xl p-4 sm:p-6 lg:p-8 backdrop-blur-sm">
-                <div className={`text-5xl sm:text-6xl lg:text-7xl font-mono font-bold tracking-wider ${
-                  isDrawing ? 'text-yellow-300' : winningNumber ? 'text-green-400' : 'text-white'
-                } transition-colors duration-200`}>
+              <div className="bg-white/5 rounded-xl p-4 sm:p-6 lg:p-8 backdrop-blur-sm" style={{
+                WebkitBackdropFilter: "inherit"
+              }}>
+                <div className={`text-5xl sm:text-6xl lg:text-7xl font-mono font-bold tracking-wider ${isDrawing ? 'text-yellow-300' : winningNumber ? 'text-green-400' : 'text-white'
+                  } transition-colors duration-200`}>
                   {displayNumber}
                 </div>
-                
+
                 {winningNumber && (
                   <div className="mt-3 sm:mt-4 flex items-center justify-center gap-2 text-yellow-300">
                     <Trophy className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -138,7 +141,7 @@ function App() {
                   </div>
                 )}
               </div>
-              
+
               {isDrawing && (
                 <div className="absolute inset-0 bg-white/5 animate-pulse rounded-xl" />
               )}
@@ -149,8 +152,8 @@ function App() {
               disabled={isDrawing}
               className={`
                 w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-lg sm:text-xl font-semibold rounded-lg
-                ${isDrawing 
-                  ? 'bg-gray-500 cursor-not-allowed' 
+                ${isDrawing
+                  ? 'bg-gray-500 cursor-not-allowed'
                   : 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                 }
                 transition-all duration-200 shadow-lg
@@ -178,7 +181,7 @@ function App() {
               </button>
             )}
           </div>
-          
+
           <div className="space-y-3 overflow-y-auto max-h-[300px] lg:max-h-[500px] pr-2 custom-scrollbar">
             {winHistory.length === 0 ? (
               <p className="text-white/50 text-sm">No previous draws</p>
