@@ -7,8 +7,10 @@ A simple, customizable raffle number generator built with React, TypeScript, and
 - Random number generation for raffle draws
 - Customizable maximum number via URL parameters
 - Customizable title via URL parameters
-- History of past draws with timestamps
+- Customizable winner reveal delay via URL parameters
 - Animated drawing with sound effects
+- Celebration effects with confetti and winner overlay
+- History of past draws with timestamps
 - Responsive design for all devices
 
 ## Local Development
@@ -132,10 +134,23 @@ The application supports the following URL parameters:
    https://your-deployed-app.com/?maxNumber=1000
    ```
 
-3. You can combine both parameters:
+3. **winnerDelay**: Sets the delay in seconds before showing the winner (default is 3 seconds)
    ```
-   https://your-deployed-app.com/?displayTitle=School%20Raffle&maxNumber=500
+   https://your-deployed-app.com/?winnerDelay=5
    ```
+
+4. You can combine all parameters:
+   ```
+   https://your-deployed-app.com/?displayTitle=School%20Raffle&maxNumber=500&winnerDelay=2
+   ```
+
+### Celebration Effects
+
+When a winner is selected, the application features:
+- Colorful confetti animation across the screen
+- A bouncing winner announcement overlay
+- Sound effects for the drawing process and winner announcement
+- Visual feedback with color changes and animations
 
 ## License
 
@@ -144,4 +159,5 @@ MIT
 ## Credits
 
 - Audio effects from [Mixkit](https://mixkit.co/)
-- Icons by [Lucide](https://lucide.dev/) 
+- Icons by [Lucide](https://lucide.dev/)
+- Confetti effects by [confetti-js](https://github.com/mathusummut/confetti.js) 
