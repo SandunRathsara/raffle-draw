@@ -15,6 +15,7 @@ function App() {
   const [title, setTitle] = useState('Number Raffle Draw');
   const [maxNumber, setMaxNumber] = useState(5000);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [winnerDelay, setWinnerDelay] = useState(3000); // Default 3 seconds
   const tickingAudioRef = useRef<HTMLAudioElement | null>(null);
   const winnerAudioRef = useRef<HTMLAudioElement | null>(null);
   const confettiCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -38,6 +39,12 @@ function App() {
     const maxParam = params.get('maxNumber');
     if (maxParam && !isNaN(parseInt(maxParam))) {
       setMaxNumber(parseInt(maxParam));
+    }
+
+    // Get winner delay from URL query parameter (in seconds)
+    const delayParam = params.get('winnerDelay');
+    if (delayParam && !isNaN(parseInt(delayParam))) {
+      setWinnerDelay(parseInt(delayParam) * 1000); // Convert seconds to milliseconds
     }
   }, []);
 
@@ -101,7 +108,7 @@ function App() {
       setDisplayNumber(Math.floor(Math.random() * maxNumber).toString().padStart(4, '0'));
     }, 50);
 
-    // Stop after 3 seconds and show winning number
+    // Stop after winnerDelay and show winning number
     setTimeout(() => {
       clearInterval(interval);
       const finalNumber = generateRandomNumber();
@@ -110,12 +117,12 @@ function App() {
       setIsDrawing(false);
       setShowCelebration(true); // Trigger celebration effect
 
-      // Add to history (no need to check for duplicates here as generateRandomNumber already ensures uniqueness)
+      // Add to history
       const newRecord: WinRecord = {
         number: finalNumber,
         timestamp: Date.now()
       };
-      const updatedHistory = [newRecord, ...winHistory]; // Remove the slice limit to keep all records
+      const updatedHistory = [newRecord, ...winHistory];
       setWinHistory(updatedHistory);
       localStorage.setItem('raffleWinHistory', JSON.stringify(updatedHistory));
 
@@ -128,7 +135,7 @@ function App() {
         winnerAudioRef.current.currentTime = 0;
         winnerAudioRef.current.play();
       }
-    }, 3000);
+    }, winnerDelay);
 
     return () => {
       clearInterval(interval);
@@ -137,7 +144,7 @@ function App() {
         tickingAudioRef.current.currentTime = 0;
       }
     };
-  }, [isDrawing, generateRandomNumber, winHistory, maxNumber]);
+  }, [isDrawing, generateRandomNumber, winHistory, maxNumber, winnerDelay]);
 
   useEffect(() => {
     if (isDrawing) {
