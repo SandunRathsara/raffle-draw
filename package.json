@@ -1,8 +1,10 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "free-self-hostable-raffle-draw",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "MIT",
+  "description": "A free, self-hostable raffle draw system with customizable features and celebration effects",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

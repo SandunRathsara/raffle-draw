@@ -1,26 +1,33 @@
-# Raffle Draw Application
+# Free Self-hostable Raffle Draw System | Random Number Generator
 
-A simple, customizable raffle number generator built with React, TypeScript, and Tailwind CSS.
+A modern, free, and self-hostable online raffle draw system and random number generator built with React, TypeScript, and Tailwind CSS. Perfect for virtual raffles, prize draws, and random number selection.
 
-## Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Random number generation for raffle draws
-- Customizable maximum number via URL parameters
-- Customizable title via URL parameters
-- Customizable winner reveal delay via URL parameters
-- Animated drawing with sound effects
-- Celebration effects with confetti and winner overlay
-- History of past draws with timestamps
-- Responsive design for all devices
+## 🎯 Features
 
-## Local Development
+- **Free & Self-hostable**: Deploy anywhere, no hidden costs
+- **Random Number Generator**: Generate unique random numbers for raffle draws
+- **Customizable Settings**: 
+  - Set custom maximum numbers
+  - Customize raffle title
+  - Adjust winner reveal timing
+- **Interactive Experience**:
+  - Animated number drawing
+  - Real-time sound effects
+  - Celebration effects with confetti
+  - Winner announcement overlay
+- **History Tracking**: Keep track of all past draws with timestamps
+- **Mobile Responsive**: Works perfectly on all devices
+- **No Installation Required**: Run directly in the browser
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
 - Node.js (v16 or newer)
 - npm, yarn, or pnpm
 
-### Setup
+### Local Development Setup
 
 1. Clone the repository:
    ```bash
@@ -48,116 +55,109 @@ A simple, customizable raffle number generator built with React, TypeScript, and
 
 4. Open your browser and navigate to `http://localhost:5173`
 
-## Deployment
+## 🌐 Deployment Options
 
-### Deploying to Vercel
+### Deploying to Vercel (Recommended)
 
-1. Create a Vercel account at [vercel.com](https://vercel.com) if you don't have one.
-
+1. Create a Vercel account at [vercel.com](https://vercel.com)
 2. Install the Vercel CLI:
    ```bash
    npm install -g vercel
    ```
-
-3. From the project directory, run:
+3. Deploy:
    ```bash
    vercel login
    vercel
    ```
 
-4. Follow the prompts to deploy your application.
-
-5. For subsequent deployments, you can run:
-   ```bash
-   vercel --prod
-   ```
-
 ### Deploying to Netlify
 
-1. Create a Netlify account at [netlify.com](https://netlify.com) if you don't have one.
-
-2. Make sure your code is pushed to a Git repository (GitHub, GitLab, or Bitbucket).
-
-3. Login to Netlify and click "New site from Git".
-
-4. Select your Git provider and repository.
-
-5. Configure build settings:
-   - Build command: `npm run build` or `yarn build` or `pnpm build`
+1. Create a Netlify account at [netlify.com](https://netlify.com)
+2. Connect your Git repository
+3. Configure build settings:
+   - Build command: `npm run build`
    - Publish directory: `dist`
 
-6. Click "Deploy site".
-
-### Alternative: Manual Deployment to Netlify
-
-1. Build your project locally:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   # or
-   pnpm build
-   ```
-
-2. Install the Netlify CLI:
-   ```bash
-   npm install -g netlify-cli
-   ```
-
-3. Deploy the `dist` folder:
-   ```bash
-   netlify deploy
-   ```
-
-4. For production deployment:
-   ```bash
-   netlify deploy --prod
-   ```
-
-## Usage
+## 🎮 Usage Guide
 
 ### Basic Usage
+1. Open the application in your browser
+2. Click "Start Draw" to begin
+3. Watch the animated number selection
+4. See the winner revealed with celebration effects
 
-Open the application in your browser. Click "Start Draw" to begin the random number selection.
+### Customization via URL Parameters
 
-### URL Parameters
-
-The application supports the following URL parameters:
-
-1. **displayTitle**: Sets a custom title for the raffle draw
+1. **Custom Title**:
    ```
    https://your-deployed-app.com/?displayTitle=Holiday%20Prize%20Draw
    ```
 
-2. **maxNumber**: Sets the maximum number for the raffle (default is 5000)
+2. **Maximum Number** (default: 5000):
    ```
    https://your-deployed-app.com/?maxNumber=1000
    ```
 
-3. **winnerDelay**: Sets the delay in seconds before showing the winner (default is 3 seconds)
+3. **Winner Delay** in seconds (default: 3):
    ```
    https://your-deployed-app.com/?winnerDelay=5
    ```
 
-4. You can combine all parameters:
+4. **Combined Settings**:
    ```
    https://your-deployed-app.com/?displayTitle=School%20Raffle&maxNumber=500&winnerDelay=2
    ```
 
-### Celebration Effects
+## ✨ Special Features
 
-When a winner is selected, the application features:
-- Colorful confetti animation across the screen
-- A bouncing winner announcement overlay
-- Sound effects for the drawing process and winner announcement
-- Visual feedback with color changes and animations
+### Interactive Celebration Effects
+- Dynamic confetti animation
+- Animated winner announcement
+- Sound effects for drawing and winning
+- Visual feedback system
 
-## License
+### Perfect for:
+- Virtual raffle events
+- Prize draws
+- Random number selection
+- Classroom activities
+- Event giveaways
+- Fundraising events
 
-MIT
+## 🔍 SEO Keywords
+- Online raffle system
+- Random number generator
+- Virtual raffle draw
+- Prize draw system
+- Random number selector
+- Raffle number generator
+- Digital raffle system
+- Online prize draw
+- Random number picker
+- Virtual number generator
 
-## Credits
+## 📝 License
 
-- Audio effects from [Mixkit](https://mixkit.co/)
-- Icons by [Lucide](https://lucide.dev/)
-- Confetti effects by [confetti-js](https://github.com/mathusummut/confetti.js) 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Credits
+
+- 🎵 Audio effects from [Mixkit](https://mixkit.co/)
+- 🎨 Icons by [Lucide](https://lucide.dev/)
+- 🎉 Confetti effects by [confetti-js](https://github.com/mathusummut/confetti.js)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+If you find this tool helpful, please consider:
+- Starring the repository
+- Reporting bugs
+- Suggesting new features
+- Contributing to the codebase
+
+---
+
+Made with ❤️ for the raffle community 

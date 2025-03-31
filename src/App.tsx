@@ -12,7 +12,7 @@ function App() {
   const [displayNumber, setDisplayNumber] = useState('0000');
   const [winningNumber, setWinningNumber] = useState<string | null>(null);
   const [winHistory, setWinHistory] = useState<WinRecord[]>([]);
-  const [title, setTitle] = useState('Number Raffle Draw');
+  const [title, setTitle] = useState('Free Self-hostable Raffle Draw');
   const [maxNumber, setMaxNumber] = useState(5000);
   const [showCelebration, setShowCelebration] = useState(false);
   const [winnerDelay, setWinnerDelay] = useState(3000); // Default 3 seconds
