@@ -160,4 +160,4 @@ If you find this tool helpful, please consider:
 
 ---
 
-Made with ❤️ for the raffle community 
+Made with ❤️ for anyone 
