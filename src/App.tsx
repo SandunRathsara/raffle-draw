@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Trophy, History, Trash2 } from 'lucide-react';
+import ConfettiGenerator from 'confetti-js';
 
 interface WinRecord {
   number: string;
@@ -13,8 +14,11 @@ function App() {
   const [winHistory, setWinHistory] = useState<WinRecord[]>([]);
   const [title, setTitle] = useState('Number Raffle Draw');
   const [maxNumber, setMaxNumber] = useState(5000);
+  const [showCelebration, setShowCelebration] = useState(false);
   const tickingAudioRef = useRef<HTMLAudioElement | null>(null);
   const winnerAudioRef = useRef<HTMLAudioElement | null>(null);
+  const confettiCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const confettiInstanceRef = useRef<any>(null);
 
   // Load history from localStorage on mount
   useEffect(() => {
@@ -36,6 +40,43 @@ function App() {
       setMaxNumber(parseInt(maxParam));
     }
   }, []);
+
+  // Handle confetti effects
+  useEffect(() => {
+    if (showCelebration && confettiCanvasRef.current) {
+      const confettiSettings = {
+        target: confettiCanvasRef.current,
+        max: 300,
+        size: 1.8,
+        animate: true,
+        props: ['circle', 'square', 'triangle', 'line'],
+        colors: [[255, 230, 0], [255, 77, 0], [255, 0, 128], [0, 210, 255], [175, 104, 255]],
+        clock: 25,
+        rotate: true,
+        start_from_edge: true,
+        respawn: true
+      };
+      
+      confettiInstanceRef.current = new ConfettiGenerator(confettiSettings);
+      confettiInstanceRef.current.render();
+      
+      // Stop celebration after 4 seconds
+      const timer = setTimeout(() => {
+        setShowCelebration(false);
+      }, 4000);
+      
+      return () => {
+        clearTimeout(timer);
+        if (confettiInstanceRef.current) {
+          confettiInstanceRef.current.clear();
+        }
+        if (winnerAudioRef.current) {
+          winnerAudioRef.current.pause();
+          winnerAudioRef.current.currentTime = 0;
+        }
+      };
+    }
+  }, [showCelebration]);
 
   const generateRandomNumber = useCallback(() => {
     let newNumber: string;
@@ -67,6 +108,7 @@ function App() {
       setDisplayNumber(finalNumber);
       setWinningNumber(finalNumber);
       setIsDrawing(false);
+      setShowCelebration(true); // Trigger celebration effect
 
       // Add to history (no need to check for duplicates here as generateRandomNumber already ensures uniqueness)
       const newRecord: WinRecord = {
@@ -117,6 +159,28 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 flex items-center justify-center p-4">
+      {/* Confetti canvas overlay */}
+      {showCelebration && (
+        <>
+          <canvas 
+            ref={confettiCanvasRef}
+            className="fixed inset-0 w-full h-full z-10 pointer-events-none"
+          />
+          <div className="fixed inset-0 flex items-center justify-center z-20 pointer-events-none">
+            <div className="bg-black/30 backdrop-blur-md px-8 py-4 rounded-xl text-white text-center transform animate-bounce">
+              <div className="flex items-center justify-center mb-2">
+                <Trophy className="w-8 h-8 text-yellow-300 mr-2" />
+                <span className="text-3xl font-bold text-yellow-300">WINNER!</span>
+                <Trophy className="w-8 h-8 text-yellow-300 ml-2" />
+              </div>
+              <div className="text-9xl font-mono font-bold text-white">
+                {winningNumber}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+      
       <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 sm:p-6 lg:p-8 w-full max-w-4xl shadow-2xl flex flex-col lg:flex-row gap-6 lg:gap-8" style={{
         WebkitBackdropFilter: "inherit"
       }}>
