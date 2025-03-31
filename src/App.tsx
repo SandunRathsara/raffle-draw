@@ -111,6 +111,8 @@ function App() {
   const clearHistory = () => {
     setWinHistory([]);
     localStorage.removeItem('raffleWinHistory');
+    setWinningNumber(null);
+    setDisplayNumber('0000')
   };
 
   return (
